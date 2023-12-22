@@ -12,7 +12,7 @@ class App {
         //adalah sebuah method yang bertujuan untuk menginisiasikan komponen appShell yang sudah dimasukkan pd properti class
         DrawerInitiator.init({
             button: this._button,
-            drawer: this._button,
+            drawer: this._drawer,
             content: this._content,
         });
     }

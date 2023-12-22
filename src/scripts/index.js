@@ -33,10 +33,10 @@ getDataRestaurant(DATA);
 
 const app = new App({
     button: document.querySelector('#hamburger'),
-    drawer: document.querySelector('#list'),
+    drawer: document.querySelector('.nav-list ul'),
     content: document.querySelector('#hero'),
 });
 
 window.addEventListener('load',()=>{
     app
-})
+});

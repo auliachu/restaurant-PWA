@@ -12,13 +12,14 @@ const DrawerInitiator = {
     _toggleDrawer(event, drawer){
         event.stopPropagation();
         drawer.classList.toggle('open');
-        console.log("This hamburg-menu has been opened");
+        //console.log(drawer);
+        //console.log("This hamburg-menu has been opened");
     },
 
     _closeDrawer(event, drawer){
         event.stopPropagation();
         drawer.classList.remove('open');
-        console.log("This hamburg-menu has been closed");
+        //console.log("This hamburg-menu has been closed");
     },
 };
 
