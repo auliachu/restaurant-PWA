@@ -1,0 +1,201 @@
+button:focus{
+  outline: 2px dashed #0f1d45;
+}
+
+input:focus{
+  outline: 2px dashed #0f1d45;
+}
+
+.skip-link{
+  position: absolute;
+  top:-40px;
+  left:0;
+  padding: 8px;
+  background-color: #bf1722;
+  color: white;
+  z-index: 100;
+}
+
+.skip-link:focus{
+  top:0;
+}
+
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body{
+  overflow-x: hidden;
+}
+
+.nav-bar{
+  width:100%;
+  background-color: #435585;
+  display: flex;
+  align-items: center;
+  color: white;
+  box-sizing: border-box;
+  padding: 18px;
+  justify-content:space-between;
+  font-family: 'Roboto Slab', serif;
+}
+
+.titleBar{
+  width: 20%;
+}
+
+.titleBar h4{
+  font-size: 20px;
+  font-weight: bold;  
+}
+
+.nav-list{
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.nav-list a{
+  text-decoration: none;
+  list-style-type: none;
+  color: white;
+}
+
+.nav-list a:hover{
+  text-decoration: underline;
+}
+
+.list-link ul {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  list-style-type: none;
+  gap:28px;
+}
+
+.list-link ul a{
+  display: flex;
+  height: 44px;
+  min-width: 44px;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero{
+  background-color:lightblue;
+  background-image: url('../public/images/heros/hero-image_1.jpg');
+  width: 100%;
+  background-position: center;
+  min-height: 380px;
+  /* background-size: 100% 100%; */
+  background-position-x:100%;
+  background-position-y:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero__inner h4{
+  font-size: 30px;
+  font-family: 'Roboto-slab';
+  font-weight: 600;
+  color: white;
+  text-align: center;
+}
+
+.hero__tagline{
+  color: white;
+}
+
+.container{
+  
+  gap: 20px;
+  margin-top: 30px;
+  padding: 40px;
+  width:fit-content;
+
+}
+
+.content img{
+  width: 100%;
+}
+
+.main-title{
+  align-items: center;
+  text-align: center;
+  margin-top: 30px;
+  padding-bottom: 18px;
+  font-family: 'Roboto-slab';
+  font-size: 25px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.content{
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.content p{
+  overflow: hidden;
+}
+
+footer{
+  background-color: #435585;
+  padding: 20px;
+  font-family: 'roboto-slab';
+  color: white;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+.hamburg-menu {
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+  box-sizing: border-box;
+}
+
+.content-item_title{
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 16px;
+  transition: 0.3 opacity;
+  padding-left: 15px;
+}
+
+.content-item_title:hover{
+  opacity: 0.5;
+}
+
+.content-item_details{
+  display: flex;
+  justify-content:space-between;
+  padding-left: 15px;
+  padding-right: 140px;
+  margin-top: 5px;
+}
+
+.content-item_city{
+  color:#0f1d45;
+}
+
+.content-item_rating{
+  color: red;
+}
+
+.content-item{
+  width: 100%;
+}
+
+.content-item_description{
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.5em;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 10px;
+  text-align: justify;
+}
