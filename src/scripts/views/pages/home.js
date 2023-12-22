@@ -1,5 +1,5 @@
-const Detail = {
-    async render(){
+const Home = {
+    async render() {
         return `
         <div class="hero" id="hero">
             <div class="hero__inner">
@@ -8,11 +8,11 @@ const Detail = {
             </div>
         </div>
 
-        <div id="detail-title" class="detail-title">
-            <h4>Detail Restaurant</h4>
+        <div id="main-title" class="main-title">
+            <h4>Explore Restaurant</h4>
         </div>
 
-        <div id="container_detail" class="container_detail">
+        <div id="container" class="container">
         </div>
         `;
     },
@@ -22,4 +22,4 @@ const Detail = {
     },
 };
 
-export default Detail;
+export default Home;
