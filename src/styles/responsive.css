@@ -1,7 +1,7 @@
 
 /* Ukuran Desktop */
 
-@media screen and (min-width:679px){
+@media screen and (min-width:780px){
     .container{
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -19,7 +19,7 @@
   
   /* Ukuran tablet */
   
-  @media screen and (max-width: 678px){
+  @media screen and (max-width: 780px){
     .container{
       display: grid;
       grid-template-columns: repeat(2,1fr);
@@ -96,6 +96,21 @@
     .container{
       display: grid;
       grid-template-columns: repeat(1,1fr);
+    }
+
+    .food_restaurant_menu, .drink_restaurant_menu{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        background-color: #435585;
+        padding: 2%;
+        margin-bottom: 2%;
+    }
+      
+    .customer-reviews{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        background-color: #435585;
+        padding: 2%;
     }
   }
   

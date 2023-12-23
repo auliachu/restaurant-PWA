@@ -28,11 +28,6 @@ input:focus{
 
 body{
   overflow-x: hidden;
-  background-color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
 }
 
 .nav-bar{
@@ -115,16 +110,15 @@ body{
 }
 
 .container{
-  
-  gap: 20px;
+  gap: 10px;
   margin-top: 30px;
   padding: 40px;
-  width:100%;
-
+  width:fit-content;
 }
 
 .content img{
   width: 100%;
+  height: 40%;
 }
 
 .main-title{
@@ -140,12 +134,17 @@ body{
 .content{
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  height: 100%;
 }
 
-.content p{
-  overflow: hidden;
+footer{
+  background-color: #435585;
+  padding: 20px;
+  font-family: 'roboto-slab';
+  color: white;
+  display: flex;
+  justify-content: space-evenly;
 }
+
 
 .hamburg-menu {
   font-size: 16px;
@@ -160,6 +159,7 @@ body{
   margin-top: 16px;
   transition: 0.3 opacity;
   padding-left: 15px;
+  padding-right: 5px;
 }
 
 .content-item_title:hover{
@@ -179,28 +179,101 @@ body{
 }
 
 .content-item_rating{
-  color: red;
+  color: black;
 }
 
 .content-item{
   width: 100%;
 }
 
-.content-item_description{
-  margin-top: 16px;
-  font-size: 14px;
-  line-height: 1.5em;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-bottom: 10px;
-  text-align: justify;
+.content{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
 }
 
-footer{
-  background-color: #435585;
-  padding: 20px;
-  font-family: 'roboto-slab';
-  color: white;
+.content-item_description{
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.2em;
+  padding-left: 7%;
+  padding-right: 7%;
+  margin-bottom: 15px;
+  text-align: justify;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
+.restaurant_title {
+  padding-bottom: 25px;
+}
+
+.detail-content{
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 5%;
+  margin-left: 6%;
+  margin-right: 6%;
+}
+
+.restaurant_poster {
+  width: 100%;
+  height: 80%;
+  margin-bottom: 2%;
+}
+
+.info_tagline{
+  margin-bottom: 2%;
+}
+
+.restaurant_overview p {
+  text-align: justify;
+  font-size: 15px;
+  width: 100%;
+}
+
+.overview_tagline{
+  margin-top: 2%;
+}
+
+.info_menu{
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.foodMenu, .drinks-menu, .customer_review{
+  color: white;
+}
+
+.food_restaurant_menu, .drink_restaurant_menu{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background-color: #435585;
+  padding: 2%;
+  margin-bottom: 2%;
+}
+
+.customer-reviews{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: #435585;
+  padding: 2%;
+}
+
+.container_detail2{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-bottom: 5%;
+  margin-left: 6%;
+  margin-right: 6%;
+}
+
+.food, .drink{
+  
 }
