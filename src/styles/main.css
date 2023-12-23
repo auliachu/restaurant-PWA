@@ -155,14 +155,19 @@ footer{
 
 .content-item_title{
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   margin-top: 16px;
   transition: 0.3 opacity;
   padding-left: 15px;
   padding-right: 5px;
 }
 
-.content-item_title:hover{
+.content-item_title a{
+  text-decoration: none;
+  color: #435585;
+}
+
+.content-item_title a:hover{
   opacity: 0.5;
 }
 
@@ -198,7 +203,7 @@ footer{
   margin-top: 10px;
   font-size: 13px;
   line-height: 1.2em;
-  padding-left: 7%;
+  padding-left: 15px;
   padding-right: 7%;
   margin-bottom: 15px;
   text-align: justify;

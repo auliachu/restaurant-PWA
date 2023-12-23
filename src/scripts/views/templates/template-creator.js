@@ -24,7 +24,7 @@ const createRestaurantItemTemplate = (restaurant) =>`
             src="${CONFIG.BASE_IMAGE_URL+restaurant.pictureId}" 
             alt="ini adalah gambar ${restaurant.name}"
             />
-            <h4 class="content-item_title">${restaurant.name}</h4>
+            <h4 class="content-item_title"><a href="/#/detail/${restaurant.id}">${restaurant.name}</a></h4>
             <div class="content-item_details">
             <p class="content-item_city">${restaurant.city}</p>
             <p class="content-item_rating">${restaurant.rating}</p>
