@@ -3,6 +3,7 @@ import '../styles/main.css';
 import '../styles/responsive.css';
 // import DATA from "../public/data/DATA.json";
 import App from './views/app';
+import swRegister from './utils/sw-register';
 
 // Request data 
 
@@ -43,4 +44,5 @@ window.addEventListener('hashchange',()=>{
 
 window.addEventListener('load', ()=>{
     app.renderPage();
+    swRegister();
 });
