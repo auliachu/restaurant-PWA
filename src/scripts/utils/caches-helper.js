@@ -13,7 +13,7 @@ const CacheHelper = {
         cacheNames.filter((name)=> name !== CONFIG.CACHE_NAME).map((filteredName) => caches.delete(filteredName));
     },
 
-    async revalidateCache(){
+    async revalidateCache(request){
         //menambahkan fetch request ke caches menggunakan state while revalidate
         const response = await caches.match(request);
         if(response){
@@ -34,7 +34,7 @@ const CacheHelper = {
             return response;
         }
 
-        await this._addCache (request);
+        await this._addCache(request);
         return response;
     },
 
