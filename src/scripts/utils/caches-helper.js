@@ -10,9 +10,7 @@ const CacheHelper = {
     async deleteOldCache(){
         //menghapus caches lama
         const cacheNames = await caches.keys(); //mengembalikan promise
-        cacheNames
-            .filter((name)=> name !== CONFIG.CACHE_NAME)
-            .map((filteredName) => caches.delete(filteredName));
+        cacheNames.filter((name)=> name !== CONFIG.CACHE_NAME).map((filteredName) => caches.delete(filteredName));
     },
 
     async revalidateCache(){
