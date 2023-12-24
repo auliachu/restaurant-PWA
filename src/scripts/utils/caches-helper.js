@@ -16,7 +16,8 @@ const CacheHelper = {
     async revalidateCache(request){
         //menambahkan fetch request ke caches menggunakan state while revalidate
         const response = await caches.match(request);
-        if(response){
+        
+        if (response) {
             this._fetchRequest(request);
             return response;
         }
@@ -27,10 +28,11 @@ const CacheHelper = {
         return caches.open(CONFIG.CACHE_NAME);
     },
 
-    async _fetchRequest(request){
+    async _fetchRequest(request) {
         //melakukan fetch request sebelum le revaliate state
         const response = await fetch(request);
-        if(!response || response.status !==200 ){
+
+        if(!response || response.status !== 200 ){
             return response;
         }
 

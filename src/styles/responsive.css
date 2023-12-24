@@ -69,8 +69,11 @@
       display: flex;
     }
   
-    .hamburg-menu{
-      display: flex;
+    .hamburg-menu {
+        display: flex;
+        text-decoration: none;
+        color: white;
+        box-sizing: border-box;
     }
   
     .nav-list ul{

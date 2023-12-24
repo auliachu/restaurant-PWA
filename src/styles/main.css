@@ -60,6 +60,10 @@ body{
   text-decoration: none;
   list-style-type: none;
   color: white;
+  height: 44px;
+  min-width: 44px;
+  align-items: center;
+  display: flex;
 }
 
 .nav-list a:hover{
@@ -143,14 +147,6 @@ footer{
   color: white;
   display: flex;
   justify-content: space-evenly;
-}
-
-
-.hamburg-menu {
-  font-size: 16px;
-  text-decoration: none;
-  color: white;
-  box-sizing: border-box;
 }
 
 .content-item_title{

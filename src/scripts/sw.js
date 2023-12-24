@@ -26,5 +26,6 @@ self.addEventListener('activate', (event)=>{
 });
 
 self.addEventListener('fetch', (event)=>{
+    console.log(event.request);
     event.respondWith(CacheHelper.revalidateCache(event.request));
 });
