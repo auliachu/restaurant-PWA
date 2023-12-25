@@ -1,6 +1,5 @@
-//menguji objek LikeButtonInitiator
-import LikeButtonInitiator from "../src/scripts/utils/like-button-initiator";
 import FavoriteRestaurant from "../src/scripts/data/favorite-restaurant";
+import * as TestFactories from './helpers/testFactories';
 
 describe('Liking A Movie', () => {
     const addLikeButtonContainer = () => {
@@ -11,33 +10,16 @@ describe('Liking A Movie', () => {
         addLikeButtonContainer();
     })
     it('Should show the like button when the restaurant has not been liked before', async () => {
-        document.body.innerHTML = '<div id="likeButtonContainer"></div>';
-
-        await LikeButtonInitiator.init({
-            likeButtonContainer: document.querySelector('#likeButtonContainer'),
-            restaurant: {
-                id: 1,
-            },
-        });
+        await TestFactories.createLikeButtonPresenterWithRestaurant({id: 1})
         expect(document.querySelector('[aria-label="like this restaurant"]')).toBeTruthy();
     });
     it('Should not show the unlike button when the restaurant has not been liked before', async () => {
-        await LikeButtonInitiator.init({
-            likeButtonContainer: document.querySelector('#likeButtonContainer'),
-            restaurant: {
-                id: 1,
-            },
-        });
+        await TestFactories.createLikeButtonPresenterWithRestaurant({id: 1})
         expect(document.querySelector('[aria-label="unlike this restaurant]')).toBeFalsy();
     });
     it('should be able to like the restaurant', async () => {
         //TODO: Menyimulasikan widget ditekan, Memeriksa jika film memang disimpan dengan benar atau tidak
-        await LikeButtonInitiator.init({
-            likeButtonContainer: document.querySelector('#likeButtonContainer'),
-            restaurant: {
-                id: 1,
-            },
-        });
+        await TestFactories.createLikeButtonPresenterWithRestaurant({id: 1})
         //untuk menyimulasikan widget ditekan bisa menggunakan dispatch event
         document.querySelector('#likeButton').dispatchEvent(new Event('click'));
         //setelah membangkitkan event 'click' asumsinya restaurant tersimpan di FavoriteRestaurant, jd perlu memiliki akses ke FavoriteRestaurant
@@ -50,13 +32,8 @@ describe('Liking A Movie', () => {
     });
 
     //Test: Ternyata film sudah disukai
-    xit('Should not add a restaurant again when its already liked', async () => {
-        await LikeButtonInitiator.init({
-            likeButtonContainer: document.querySelector('likeButtonContainer'),
-            restaurant: {
-                id: 1,
-            },
-        });
+    it('Should not add a restaurant again when its already liked', async () => {
+        await TestFactories.createLikeButtonPresenterWithRestaurant({id: 1});
         //tambahkan restaurant dengan ID 1 ke daftar restaurant yang disukai
         await FavoriteRestaurant.putRestaurant({ id: 1 });
         //simulasikan pengguna menekan tombol suka film
@@ -70,11 +47,8 @@ describe('Liking A Movie', () => {
     });
 
     //Test: Data film tidak memiliki ID
-    xit('Should not add a movie when it has no id', async () => {
-        await LikeButtonInitiator.init({
-            likeButtonContainer: document.querySelector('#likeButtonContainer'),
-            restaurant: { },
-        });
+    it('Should not add a movie when it has no id', async () => {
+        await TestFactories.createLikeButtonPresenterWithRestaurant({ });
         document.querySelector('#likeButton').dispatchEvent(new Event('click'));
         expect( await FavoriteRestaurant.getAllRestaurant()).toEqual([]);
     });

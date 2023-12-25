@@ -1,5 +1,5 @@
-import LikeButtonInitiator from "../src/scripts/utils/like-button-initiator";
 import FavoriteRestaurant from "../src/scripts/data/favorite-restaurant";
+import * as TestFactories from './helpers/testFactories';
 
 describe('Unliking A Restaurant', () => {
     const addLikeButtonContainer = () => {
@@ -16,34 +16,19 @@ describe('Unliking A Restaurant', () => {
     });
     
     it('should display unlike widget when the restaurant has been liked', async () => {
-        await LikeButtonInitiator.init({
-            likeButtonContainer: document.querySelector('#likeButtonContainer'),
-            restaurant: {
-                id: 1,
-            },
-        });
+        await TestFactories.createLikeButtonPresenterWithRestaurant({id: 1});
         expect(document.querySelector('[aria-label="unlike this restaurant"]')).toBeTruthy();
     });
     it('should not display like widget when the restaurant has been liked', async () => {
-        await LikeButtonInitiator.init({
-            likeButtonContainer: document.querySelector('#likeButtonContainer'),
-            restaurant: {
-                id: 1,
-            },
-        });
+        await TestFactories.createLikeButtonPresenterWithRestaurant({id: 1});
         expect(document.querySelector('[aria-label="like this restaurant"]')).toBeFalsy();
     });
-    xit('should not throw error when user click unlike widget if the unliked movie is not in the list', async () => {
-        await LikeButtonInitiator.init({
-            likeButtonContainer: document.querySelector('#likeButtonContainer'),
-            restaurant: {
-                id: 1,
-            },
-        });
+    it('should not throw error when user click unlike widget if the unliked movie is not in the list', async () => {
+        await TestFactories.createLikeButtonPresenterWithRestaurant({id: 1});
         //hapus dulu restaurant dari daftar restaurant yang disukai
         await FavoriteRestaurant.deleteRestaurant(1);
         //kemudian simulasikan pengguna menekan widget batal menyukai restaurant
-        document.querySelector('[aria-label="unlike this movie"]').dispatchEvent(new Event('click'));
+        document.querySelector('[aria-label="unlike this restaurant"]').dispatchEvent(new Event('click'));
         expect(await FavoriteRestaurant.getAllRestaurant()).toEqual([]);
     });
 });
