@@ -31,11 +31,12 @@ const LikeButtonInitiator ={
         this._likeButtonContainer.innerHTML = createLikeButtonTemplate();
 
         const likeButton = document.querySelector('#likeButton');
-        likeButton.addEventListener('click', async ()=>{
+        likeButton.addEventListener('click', async () => {
             await FavoriteRestaurant.putRestaurant(this._restaurant);
             this._renderButton();
         });
     },
+    
     _renderLiked(){
         this._likeButtonContainer.innerHTML = createLikedButtonTemplate();
 
