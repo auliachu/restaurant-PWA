@@ -10,7 +10,7 @@ describe('Liking A Movie', () => {
     beforeEach(() => {
         addLikeButtonContainer();
     })
-    xit('Should show the like button when the restaurant has not been liked before', async () => {
+    it('Should show the like button when the restaurant has not been liked before', async () => {
         document.body.innerHTML = '<div id="likeButtonContainer"></div>';
 
         await LikeButtonInitiator.init({
@@ -19,7 +19,7 @@ describe('Liking A Movie', () => {
                 id: 1,
             },
         });
-        expect(document.querySelector('[aria-label="like this restaurant]')).toBeTruthy();
+        expect(document.querySelector('[aria-label="like this restaurant"]')).toBeTruthy();
     });
     it('Should not show the unlike button when the restaurant has not been liked before', async () => {
         await LikeButtonInitiator.init({
