@@ -28,8 +28,10 @@ const FavoriteRestaurant = {
 
         return (await dbPromise).put(OBJECT_STORE_NAME, restaurant);
     },
-    async deleteRestaurant(restaurant){
-        return (await dbPromise).delete(OBJECT_STORE_NAME, restaurant);
+    async deleteRestaurant(id){
+        return (await dbPromise).delete(OBJECT_STORE_NAME, id);
+    },
+    async searchRestaurant(query){
     },
 };
 

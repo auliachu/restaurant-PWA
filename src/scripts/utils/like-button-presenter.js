@@ -1,11 +1,11 @@
-import FavoriteRestaurant from "../data/favorite-restaurant";
 import { createLikeMovieButtonTemplate, createUnlikeMovieButtonTemplate } from "../views/templates/template-creator";
 
 const LikeButtonPresenter ={
     //butuh container yang menampung tombol like diletakkan, dan objek restaurant yang dimasukkan ke dalam database
-    async init({likeButtonContainer, restaurant}){
+    async init({likeButtonContainer, favoriteRestaurant, restaurant}){
         this._likeButtonContainer = likeButtonContainer;
         this._restaurant = restaurant;
+        this._favoriteRestaurant = favoriteRestaurant;
         await this._renderButton();
     },
     async _renderButton(){
@@ -23,7 +23,7 @@ const LikeButtonPresenter ={
         }
     },
     async _isRestaurantExist(id){
-        const restaurant = await FavoriteRestaurant.getRestaurant(id);
+        const restaurant = await this._favoriteRestaurant.getRestaurant(id);
         return !!restaurant;
     },
     
@@ -32,7 +32,7 @@ const LikeButtonPresenter ={
 
         const likeButton = document.querySelector('#likeButton');
         likeButton.addEventListener('click', async () => {
-            await FavoriteRestaurant.putRestaurant(this._restaurant);
+            await this._favoriteRestaurant.putRestaurant(this._restaurant);
             this._renderButton();
         });
     },
@@ -42,7 +42,7 @@ const LikeButtonPresenter ={
 
         const likeButton = document.querySelector('#likeButton');
         likeButton.addEventListener('click', async ()=>{
-            await FavoriteRestaurant.deleteRestaurant(this._restaurant.id);
+            await this._favoriteRestaurant.deleteRestaurant(this._restaurant.id);
             this._renderButton();
         });
     },
