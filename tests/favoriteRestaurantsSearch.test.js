@@ -1,6 +1,4 @@
-import { spyOn } from "jest-mock"; //memata-matai atau memalsukan objek
 import FavoriteRestaurantSearchPresenter from "../src/scripts/views/pages/liked-restaurants/favorite-restaurant-search-presenter";
-import FavoriteRestaurant from "../src/scripts/data/favorite-restaurant";
 
 describe('Searching movie', () => {
     let presenter;
@@ -11,7 +9,7 @@ describe('Searching movie', () => {
         queryElement.value = query;
         queryElement.dispatchEvent(new Event('change'));
     };
-
+    
     const setRestaurantSearchContainer = () => {
         document.body.innerHTML = `
             <div id="restaurant-search-container">
@@ -27,8 +25,8 @@ describe('Searching movie', () => {
         favoriteRestaurant = {
             getAllRestaurant: jest.fn(),
             searchRestaurant: jest.fn(),
-        };
-
+        }
+        
         presenter = new FavoriteRestaurantSearchPresenter({
           favoriteRestaurant,
         });
@@ -42,15 +40,15 @@ describe('Searching movie', () => {
     describe('when query is not empty', () => {
         it('should be able to capture the query typed by the user', () => {
             //simulasikan pengguna memasukkan nilai film yang ingin dicari
-            FavoriteRestaurant.searchRestaurant.mockImplementation(() => []);
+            favoriteRestaurant.searchRestaurant.mockImplementation(() => []);
             searchRestaurant('film a');
             expect(presenter.latestQuery).toEqual('film a');
         });
         it('should ask the model to search for liked restaurants', () => {
-            FavoriteRestaurant.searchRestaurant.mockImplementation(() => []);
+            favoriteRestaurant.searchRestaurant.mockImplementation(() => []);
             // eslint-disable-next-line no-unused-vars
             searchRestaurant('film a');
-            expect(FavoriteRestaurant.searchRestaurant).toHaveBeenCalledWith('film a');
+            expect(favoriteRestaurant.searchRestaurant).toHaveBeenCalledWith('film a');
         });
         it('should show the found restaurant', () => {
             presenter._showFoundRestaurant([{ id: 1 }]);
@@ -110,7 +108,7 @@ describe('Searching movie', () => {
                 done();
                 });
             
-            FavoriteRestaurant.searchRestaurant.mockImplementation((query) => {
+            favoriteRestaurant.searchRestaurant.mockImplementation((query) => {
                 if (query === 'film a') {
                 return [
                     { id: 111, title: 'film abc' },
@@ -138,7 +136,7 @@ describe('Searching movie', () => {
                 done();
                 });
             
-            FavoriteRestaurant.searchRestaurant.mockImplementation((query) => {
+            favoriteRestaurant.searchRestaurant.mockImplementation((query) => {
                 if (query === 'film a') {
                 return [
                     { id: 111, title: 'film abc' },
@@ -156,6 +154,7 @@ describe('Searching movie', () => {
 
     describe('when query is empty', () => {
         it('should capture the query as empty', () => {
+            favoriteRestaurant.getAllRestaurant.mockImplementation(() => []);
             searchRestaurant(' ');
             expect(presenter.latestQuery.length).toEqual(0);
 
@@ -167,6 +166,34 @@ describe('Searching movie', () => {
 
             searchRestaurant('\t');
             expect(presenter.latestQuery.length).toEqual(0);
+        });
+
+        it('should show all favorite restaurants', () => {
+            favoriteRestaurant.getAllRestaurant.mockImplementation(() => []);
+            searchRestaurant('       ');
+            expect(favoriteRestaurant.getAllRestaurant).toHaveBeenCalled();
+        })
+    });
+
+    describe('when no favorite restaurants could be found', () => {
+        it('should show the empty message', (done) => {
+            document
+                .getElementById('restaurant-search-container')
+                .addEventListener('restaurants:searched:updated', () => {
+                    expect(document.querySelectorAll('.restaurant__not__found').length).toEqual(1);
+                    done();
+                });
+            favoriteRestaurant.searchRestaurant.mockImplementation((query) => []);
+            searchRestaurant('film a');
+        });
+        it('should not show any movie', (done) => {
+            document.getElementById('restaurant-search-container')
+                .addEventListener('restaurants:searched:updated', () => {
+                    expect(document.querySelectorAll('.restaurant').length).toEqual(0);
+                    done();
+                });
+            favoriteRestaurant.searchRestaurant.mockImplementation((query) => []);
+            searchRestaurant('film a');
         });
     });
 });

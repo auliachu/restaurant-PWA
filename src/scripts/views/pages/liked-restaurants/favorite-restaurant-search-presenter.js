@@ -3,6 +3,7 @@ class FavoriteRestaurantSearchPresenter {
         this._listenToSearchRequestByUser();
         this._favoriteRestaurant = favoriteRestaurant;
     }
+
     _listenToSearchRequestByUser() {
         this._queryElement = document.getElementById('query');
         this._queryElement.addEventListener('change', (event) => {
@@ -17,26 +18,36 @@ class FavoriteRestaurantSearchPresenter {
 
     async _searchRestaurant(latestQuery){
         this._latestQuery = latestQuery.trim();
-
-        const foundRestaurant = await this._favoriteRestaurant.searchRestaurant(this._latestQuery);
+        let foundRestaurant;
+        if(this.latestQuery.length > 0) {
+            foundRestaurant = await this._favoriteRestaurant.searchRestaurant(this.latestQuery);
+        } else {
+            foundRestaurant = await this._favoriteRestaurant.getAllRestaurant();
+        }
         this._showFoundRestaurant(foundRestaurant);
     }
 
-    _showFoundRestaurant(restaurants) {
-        const html = restaurants.reduce(
-          (carry, restaurant) => carry.concat(`
-            <li class="restaurant">
-              <span class="restaurant__title">${restaurant.title || '-'}</span>
-            </li>
-          `),
-          '',
-        );
+    _showFoundRestaurant(restaurants) { //lanjut disini 
+        let html;
+        if (restaurants.length > 0) {
+            html = restaurants.reduce(
+                (carry, restaurant) => carry.concat(`
+                  <li class="restaurant">
+                    <span class="restaurant__title">${restaurant.title || '-'}</span>
+                  </li>
+                `),
+                '',
+            );
+        } else {
+            html = '<div class="restaurant__not__found">Film tidak ditemukan</div>';
+        }
      
         document.querySelector('.restaurants').innerHTML = html;
         document
             .getElementById('restaurant-search-container')
             .dispatchEvent(new Event('restaurants:searched:updated'));
     }
+    
 }
 
 export default FavoriteRestaurantSearchPresenter;
