@@ -39,17 +39,17 @@ const FavoriteRestaurantArray = {
     favoriteRestaurant = favoriteRestaurant.filter((restaurant) => restaurant.id != id);
   },
 
-  async searchRestaurant(query){
-    return (await this.getAllRestaurant()).filter((restaurant) => {
-        const loweredCaseRestaurantTitle = (restaurant.title || '-').toLowerCase();
-        const jammedRestaurantTitle = loweredCaseRestaurantTitle.replace(/\s/g, '');
-        
-        const loweredCaseQuery = query.toLowerCase();
-        const jammedQuery = loweredCaseQuery.replace(/\s/g, '');
+    searchRestaurant(query){
+        return this.getAllRestaurant().filter((restaurant) => {
+            const loweredCaseRestaurantTitle = (restaurant.title || '-').toLowerCase();
+            const jammedRestaurantTitle = loweredCaseRestaurantTitle.replace(/\s/g, '');
+            
+            const loweredCaseQuery = query.toLowerCase();
+            const jammedQuery = loweredCaseQuery.replace(/\s/g, '');
 
-        return jammedRestaurantTitle.indexOf(jammedQuery) !== -1;
-    });
-  },
+            return jammedRestaurantTitle.indexOf(jammedQuery) !== -1;
+        });
+    },
 };
 
 describe('Favorite Restaurant Array Contract Test Implementation', () => {

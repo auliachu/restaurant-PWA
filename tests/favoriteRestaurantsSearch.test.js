@@ -46,80 +46,7 @@ describe('Searching movie', () => {
             // eslint-disable-next-line no-unused-vars
             searchRestaurant('film a');
             expect(favoriteRestaurant.searchRestaurant).toHaveBeenCalledWith('film a');
-        });
-        it('should show the found restaurant', () => {
-            presenter._showFoundRestaurant([{ id: 1 }]);
-            expect(document.querySelectorAll('.restaurant').length).toEqual(1);
-            
-            presenter._showFoundRestaurant([
-                {
-                id: 1,
-                title: 'Satu',
-                },
-                {
-                id: 2,
-                title: 'Dua',
-                },
-            ]);
-            expect(document.querySelectorAll('.restaurant').length).toEqual(2);
-        });
-        it('should show the title of the found restaurant', () => {
-            presenter._showFoundRestaurant([
-                {
-                id: 1,
-                title: 'Satu',
-                },
-            ]);
-            
-            expect(document.querySelectorAll('.restaurant__title').item(0).textContent).toEqual('Satu');
-            
-            presenter._showFoundRestaurant([
-                {
-                id: 1,
-                title: 'Satu',
-                },
-                {
-                id: 2,
-                title: 'Dua',
-                },
-            ]);
-            
-            const RestaurantTitles = document.querySelectorAll('.restaurant__title');
-            
-            expect(RestaurantTitles.item(0).textContent).toEqual('Satu');
-            expect(RestaurantTitles.item(1).textContent).toEqual('Dua');
-            });
-            
-        it('should show - for found restaurant without title', () => {
-            presenter._showFoundRestaurant([{ id: 1 }]);
-            
-            expect(document.querySelectorAll('.restaurant__title').item(0).textContent).toEqual('-');
-        });
-        
-        it('should show the restaurant found by Favorite Restaurant', (done) => {
-            document
-                .getElementById('restaurant-search-container')
-                .addEventListener('restaurants:searched:updated', () => {
-                expect(document.querySelectorAll('.restaurant').length).toEqual(3);
-            
-                done();
-                });
-            
-            favoriteRestaurant.searchRestaurant.mockImplementation((query) => {
-                if (query === 'film a') {
-                return [
-                    { id: 111, title: 'film abc' },
-                    { id: 222, title: 'ada juga film abcde' },
-                    { id: 333, title: 'ini juga boleh film a' },
-                ];
-                }
-            
-                return [];
-            });
-            
-            searchRestaurant('film a');
-            });
-            
+        });    
         it('should show the name of the restaurant found by Favorite Restaurant', (done) => {
             document
                 .getElementById('restaurant-search-container')
@@ -145,6 +72,22 @@ describe('Searching movie', () => {
                 return [];
             });
             
+            searchRestaurant('film a');
+        });
+        it('should show - when the movie returned does not contain a title', (done) => {
+            document.getElementById('restaurant-search-container')
+                .addEventListener('restaurants:searched:updated', () => {
+                    const restaurantTitles = document.querySelectorAll('.restaurant__title');
+                    expect(restaurantTitles.item(0).textContent).toEqual('-');
+                    
+                    done();
+                });
+            favoriteRestaurant.searchRestaurant.mockImplementation((query) => {
+                if(query === 'film a') {
+                    return [{ id: 444 }];
+                }
+                return [];
+            });
             searchRestaurant('film a');
         });
     });
