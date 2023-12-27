@@ -1,8 +1,11 @@
 import FavoriteRestaurantSearchPresenter from "../src/scripts/views/pages/liked-restaurants/favorite-restaurant-search-presenter";
+import FavoriteRestaurantSearchView from "../src/scripts/views/pages/liked-restaurants/favorite-restaurant-search-view";
+import { beforeEach, describe, expect, it, jest } from "@jest/globals";
 
 describe('Searching movie', () => {
     let presenter;
     let favoriteRestaurant;
+    let view;
     
     const searchRestaurant = (query) => {
         const queryElement = document.getElementById('query');
@@ -11,15 +14,8 @@ describe('Searching movie', () => {
     };
     
     const setRestaurantSearchContainer = () => {
-        document.body.innerHTML = `
-            <div id="restaurant-search-container">
-                <input id="query" type="text">
-                <div class="restaurant-result-container">
-                    <ul class="restaurants">
-                    </ul>
-                </div>
-            </div>
-        `;
+        view = new FavoriteRestaurantSearchView();
+        document.body.innerHTML = view.getTemplate();
     };
     const constructPresenter = () => {
         favoriteRestaurant = {
@@ -29,6 +25,7 @@ describe('Searching movie', () => {
         
         presenter = new FavoriteRestaurantSearchPresenter({
           favoriteRestaurant,
+          view,
         });
     };
      
