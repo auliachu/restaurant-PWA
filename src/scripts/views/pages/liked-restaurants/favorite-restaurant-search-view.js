@@ -50,9 +50,9 @@ class FavoriteRestaurantSearchView {
             .dispatchEvent(new Event('restaurants:searched:updated'));
     }
     
-    showFavoriteRestaurants(restaurants) [
+    showFavoriteRestaurants(restaurants) {
         document.getElementById('restaurants').innerHTML = '<div class="restaurant-item__not__found"></div>'
-    ]
+    }
 
 }
 
