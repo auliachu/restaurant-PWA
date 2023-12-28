@@ -1,3 +1,4 @@
+import { createRestaurantItemTemplate } from '../../templates/template-creator';
 class FavoriteRestaurantSearchView {
     getTemplate() {
         return `
@@ -51,7 +52,15 @@ class FavoriteRestaurantSearchView {
     }
     
     showFavoriteRestaurants(restaurants) {
-        document.getElementById('restaurants').innerHTML = '<div class="restaurant-item__not__found"></div>'
+        let html;
+        if (restaurants.length) {
+            html = restaurants.reduce((carry, restaurant) => carry.concat(createRestaurantItemTemplate(restaurant)), '');
+        } else {
+            html = '<div class="restaurant-item__not__found"></div>';
+        }
+
+        document.getElementById('restaurants').innerHTML = html;
+        document.getElementById('restaurants').dispatchEvent(new Event('restaurants:updated'));
     }
 
 }

@@ -15,8 +15,13 @@ describe('Showing all favorite restaurants', () => {
     describe('When no restaurants have been liked', () => {
 
       it('should render the information that no restaurants have been liked', () => {
+        const favoriteRestaurants = {
+          getAllRestaurant: jest.fn().mockImplementation(() => []),
+        };
+
         const presenter = new FavoriteRestaurantShowPresenter({
             view,
+            favoriteRestaurants,
         });
 
         const restaurants = [];
@@ -35,6 +40,52 @@ describe('Showing all favorite restaurants', () => {
         });
 
         expect(favoriteRestaurants.getAllRestaurant).toHaveBeenCalledTimes(1);
+      });
+
+      it('should show the information that no restaurants have been liked', (done) => {
+        document.getElementById('restaurants').addEventListener('restaurants:updated', () => {
+          expect(document.querySelectorAll('.restaurant-item__not__found').length).toEqual(1);
+
+          done();
+        });
+
+        const favoriteRestaurants = {
+          getAllRestaurant: jest.fn().mockImplementation(() => []),
+        };
+
+        new FavoriteRestaurantShowPresenter({
+          view,
+          favoriteRestaurants,
+        });
+      });
+    });
+
+    describe('when favorite restaurants exist', () => {
+      it('should render the restaurants', () => {
+        const favoriteRestaurants = {
+          getAllRestaurant: jest.fn().mockImplementation(() => []),
+        };
+        const presenter = new FavoriteRestaurantShowPresenter({
+          view,
+          favoriteRestaurants,
+        });
+
+        presenter._displayRestaurants([
+          {
+            id: 11,
+            title: 'A',
+            vote_average: 4,
+            overview: 'Sebuah film B',
+          },
+          {
+            id: 22,
+            title: 'B',
+            vote_average: 4,
+            overview: 'Sebuah film B',
+          },
+        ]);
+        
+        expect(document.querySelectorAll('.restaurant-item').length).toEqual(2);
       });
     });
   });
